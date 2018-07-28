@@ -22,6 +22,7 @@ namespace WindowsFormsApp1
                 new Phone { Id = 13, Name = "iPhone 6", Year = 2014},
                 new Phone { Id = 14, Name = "Microsoft Lumia 435", Year = 2015},
                 new Phone { Id = 15, Name = "Xiaomi Mi 5", Year = 2015}
+                new Phone { Id = 1,, Name = "Xiaomi RedMi 5", Year = 2016}
             };
             listBox1.DataSource = phones;
             listBox1.DisplayMember = "Name";
