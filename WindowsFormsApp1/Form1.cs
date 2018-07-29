@@ -21,13 +21,19 @@ namespace WindowsFormsApp1
                 new Phone { Id = 12, Name = "Samsung Galaxy S4", Year = 2013},
                 new Phone { Id = 13, Name = "iPhone 6", Year = 2014},
                 new Phone { Id = 14, Name = "Microsoft Lumia 435", Year = 2015},
-                new Phone { Id = 15, Name = "Xiaomi Mi 5", Year = 2015}
-                new Phone { Id = 1,, Name = "Xiaomi RedMi 5", Year = 2016}
+                new Phone { Id = 15, Name = "Xiaomi Mi 5", Year = 2015},
+                new Phone { Id = 16, Name = "Xiaomi RedMi 5", Year = 2016}
             };
             listBox1.DataSource = phones;
             listBox1.DisplayMember = "Name";
             listBox1.ValueMember = "Id";
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+
+            button1.Click += button1_Click;
+            button2.Click += button2_Click;
+            openFileDialog1.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            saveFileDialog1.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+
 
         }
         void listBox1_SelectedIndexChanged(object sender,EventArgs e) 
@@ -36,6 +42,29 @@ namespace WindowsFormsApp1
 
             Phone phone = (Phone)listBox1.SelectedItem;
             MessageBox.Show(id.ToString() + ". " + phone.Name);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = openFileDialog1.FileName;
+            // читаем файл в строку
+            string fileText = System.IO.File.ReadAllText(filename);
+            textBox1.Text = fileText;
+            MessageBox.Show("Файл открыт");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = saveFileDialog1.FileName;
+            // сохраняем текст в файл
+            System.IO.File.WriteAllText(filename, textBox1.Text);
+            MessageBox.Show("Файл сохранен");
         }
     }
     class Phone
